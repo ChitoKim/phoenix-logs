@@ -153,7 +153,7 @@ class DownloadGameId(object):
                         if result:
                             results.append(result)
             else:
-                with open(os.path.join(self.logs_directory, file_name)) as f:
+                with open(os.path.join(self.logs_directory, file_name), 'r', encoding='UTF-8') as f:
                     for line in f:
                         result = self._process_log_line(line)
                         if result:
