@@ -21,7 +21,6 @@ def load_logs_from_db(db_path: str, limit: int, offset: int):
     for x in data:
         log_id = x[0]
         try:
-            print(x[1])
             results.append({"log_id": log_id, "log_content": gzip.decompress(x[1]).decode("utf-8")})
         except Exception as e:
             print(e)
