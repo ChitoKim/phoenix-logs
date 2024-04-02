@@ -30,8 +30,8 @@ if __name__ == '__main__':
 
         parsed_log = lp.split_log_to_game_rounds(log['log_content'])
 
-        print('LOG:')
-        pprint(log)
+        #print('LOG:')
+        #pprint(log)
 
         print('\nPARSED LOG:')
         pprint(parsed_log)
