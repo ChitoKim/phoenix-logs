@@ -83,3 +83,10 @@ You can validate that all downloaded logs can be parsed with this command:
 `python validate.py -y 2009`
 
 It contains example of parsing log content on separate tags as well.
+
+# Output raw mjlog(xml) game logs into text files
+
+'python getxml.py -p {DB Path} -l {Limit} -o {Offset}'
+
+for example, if you have 2024.db in db folder
+'python getxml.py -p {DB Path} -l 100 -o 0'
