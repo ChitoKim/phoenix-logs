@@ -86,7 +86,8 @@ It contains example of parsing log content on separate tags as well.
 
 # Output raw mjlog(xml) game logs into text files
 
-'python getxml.py -p {DB Path} -l {Limit} -o {Offset}'
+`python getxml.py -p {DB Path} -l {Limit} -o {Offset}`
 
 for example, if you have 2024.db in db folder
-'python getxml.py -p {DB Path} -l 100 -o 0'
+
+`python getxml.py -p {DB Path} -l 100 -o 0`
