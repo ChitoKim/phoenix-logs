@@ -5,12 +5,13 @@ from optparse import OptionParser
 
 if __name__ == '__main__':
 
-    db_path = 'db/2024.db'
     parser = OptionParser()
 
-    parser.add_option("-p", "--db-path",type="string", help="DB Path")
+    parser.add_option("-p", "--path",type="string", help="DB Path")
     parser.add_option("-l", "--limit",type="string", help="Limit")
     parser.add_option("-o", "--offset",type="string", help="Offset")
+    parser.add_option("-f", "--format", type="string", help="If On, split files into hanchans", default="")
+    parser.add_option("-n", "--fname", type="string", help="Name of the Output File")
 
     opts,_ = parser.parse_args() 
 
@@ -18,12 +19,20 @@ if __name__ == '__main__':
     
 
 
-    loaded_logs = load_logs_from_db(db_path, limit=opts.limit, offset=opts.offset)  # Not sure how LIMIT and OFFSET works here? Dates?
+    loaded_logs = load_logs_from_db(opts.path, limit=opts.limit, offset=opts.offset)  # Not sure how LIMIT and OFFSET works here? Dates?
     
-    for log in loaded_logs:
-        filename = log['log_id'] + ".xml"
+    if(opts.format):
+        for log in loaded_logs:
+           filename = log['log_id'] + ".xml"
+           f = open(filename, "w")
+           f.write(log['log_content'])
+           f.close()
+    
+    
+    else:
+        filename =  opts.fname + ".xml" if opts.fname else opts.path.removesuffix(".db") + ".xml"
         f = open(filename, "w")
-        f.write(log['log_content'])
+        for log in loaded_logs:
+            f.write(log['log_id'] + "\n" + log['log_content'] + "\n")
         f.close()
-    
     
