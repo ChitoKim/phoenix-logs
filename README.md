@@ -84,10 +84,17 @@ You can validate that all downloaded logs can be parsed with this command:
 
 It contains example of parsing log content on separate tags as well.
 
+
+# Download games
+
+python main.py -a id -p db/2024.db -y 2024 -s
+
 # Output raw mjlog(xml) game logs into text files
 
-`python getxml.py -p {DB Path} -l {Limit} -o {Offset}`
+`python getxml.py -p {DB Path} -l {Limit} -o {Offset} -f {Format} -n {Output File Name}`
 
 for example, if you have 2024.db in db folder
 
-`python getxml.py -p {DB Path} -l 100 -o 0`
+`python getxml.py -p db/2024.db -l 100 -o 0`
+
+Then it outputs a single file containing 100 games, as db/2024.xml
