@@ -21,6 +21,8 @@ if __name__ == '__main__':
 
     loaded_logs = load_logs_from_db(opts.path, limit=opts.limit, offset=opts.offset)  # Not sure how LIMIT and OFFSET works here? Dates?
     
+    print("This DB has %d games in total" % get_total_logs_count(opts.path))
+    
     if(opts.format):
         for log in loaded_logs:
            filename = log['log_id'] + ".xml"
