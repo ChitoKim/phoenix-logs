@@ -23,18 +23,20 @@ if __name__ == '__main__':
     
     print("This DB has %d games in total" % get_total_logs_count(opts.path))
     
-    if(opts.format):
-        for log in loaded_logs:
-           filename = log['log_id'] + ".xml"
-           f = open(filename, "w")
-           f.write(log['log_content'])
-           f.close()
+    print(loaded_logs)
     
-    
-    else:
-        filename =  opts.fname + ".xml" if opts.fname else opts.path.removesuffix(".db") + ".xml"
-        f = open(filename, "w")
-        for log in loaded_logs:
-            f.write(log['log_id'] + "\n" + log['log_content'] + "\n")
-        f.close()
+   # if(opts.format):
+   #     for log in loaded_logs:
+   #        filename = log['log_id'] + ".xml"
+   #        f = open(filename, "w")
+   #        f.write(log['log_content'])
+   #        f.close()
+   # 
+   # 
+   # else:
+   #     filename =  opts.fname + ".xml" if opts.fname else opts.path.removesuffix(".db") + ".xml"
+   #     f = open(filename, "w")
+   #     for log in loaded_logs:
+   #         f.write(log['log_id'] + "\n" + log['log_content'] + "\n")
+   #     f.close()
     
