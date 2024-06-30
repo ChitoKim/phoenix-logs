@@ -1,6 +1,4 @@
 from db import *
-from log_parser import *
-
 from optparse import OptionParser
 
 if __name__ == '__main__':
