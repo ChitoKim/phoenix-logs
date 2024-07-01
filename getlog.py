@@ -32,6 +32,6 @@ if __name__ == '__main__':
         filename =  opts.fname + ".json" if opts.fname else opts.path.removesuffix(".db") + ".json"
         f = open(filename, "w", encoding='utf-8')
         for log in loaded_logs:
-            f.write(log['log_id'] + "\n" + log['log_content'] + "\n")
+            f.write(log['log_content'] + "\n")
         f.close()
     
