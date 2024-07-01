@@ -87,9 +87,9 @@ It contains example of parsing log content on separate tags as well.
 
 # Download games example
 
-python main.py -a id -p db/2024.db -y 2024 -s
+`python main.py -a id -p db/2024.db -y 2024 -s`
 
-python main.py -a content -p db/2024.db -l 100000 -t 1
+`python main.py -a content -p db/2024.db -l 100000 -t 1`
 
 # Output raw mjlog(xml) game logs into text files
 
