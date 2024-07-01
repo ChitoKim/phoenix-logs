@@ -87,14 +87,16 @@ It contains example of parsing log content on separate tags as well.
 
 # Download games
 
-python main.py -a id -p db/2024.db -y 2024 -s
+`python main.py -a id -p db/2024.db -y 2024 -s`
 
-# Output raw mjlog(xml) game logs into text files
+`python main.py -a content -p`
 
-`python getxml.py -p {DB Path} -l {Limit} -o {Offset} -f {Format} -n {Output File Name}`
+# Output json(tenhou.net/6) game logs into text files
+
+`python getlog.py -p {DB Path} -l {Limit} -o {Offset} -f {Format} -n {Output File Name}`
 
 for example, if you have 2024.db in db folder
 
-`python getxml.py -p db/2024.db -l 100 -o 0`
+`python getlog.py -p db/2024.db -l 100 -o 0`
 
-Then it outputs a single file containing 100 games, as db/2024.xml
+Then it outputs a single file containing 100 games, as db/2024.json
