@@ -1,6 +1,4 @@
 from db import *
-from log_parser import *
-
 from optparse import OptionParser
 
 if __name__ == '__main__':
@@ -15,26 +13,25 @@ if __name__ == '__main__':
 
     opts,_ = parser.parse_args() 
 
-    lp = LogParser()
-    
-
 
     loaded_logs = load_logs_from_db(opts.path, limit=opts.limit, offset=opts.offset)  # Not sure how LIMIT and OFFSET works here? Dates?
     
     print("This DB has %d games in total" % get_total_logs_count(opts.path))
     
+    # print(loaded_logs)
+    
     if(opts.format):
         for log in loaded_logs:
-           filename = log['log_id'] + ".xml"
-           f = open(filename, "w")
+           filename = log['log_id'] + ".json"
+           f = open(filename, "w", encoding='utf-8')
            f.write(log['log_content'])
            f.close()
     
     
     else:
-        filename =  opts.fname + ".xml" if opts.fname else opts.path.removesuffix(".db") + ".xml"
-        f = open(filename, "w")
+        filename =  opts.fname + ".json" if opts.fname else opts.path.removesuffix(".db") + ".json"
+        f = open(filename, "w", encoding='utf-8')
         for log in loaded_logs:
-            f.write(log['log_id'] + "\n" + log['log_content'] + "\n")
+            f.write(log['log_content'] + "\n")
         f.close()
     
