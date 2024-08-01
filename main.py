@@ -29,7 +29,7 @@ def parse_command_line_arguments():
     parser.add_option("-p", "--db_path", type="string", default="db/"+ current_year + ".db")
     parser.add_option("-a", "--action", type="string", default="id", help="id or content")
     parser.add_option("-l", "--limit", type="int", default=0, help="To download content script")
-    parser.add_option("-t", "--threads", type="int", default=3, help="Count of threads")
+    parser.add_option("-t", "--threads", type="int", default=1, help="Count of threads")
     parser.add_option(
         "-f", "--from_archive", action="store_true", dest="from_archive", help="Extract logs from archive"
     )
