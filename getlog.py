@@ -7,14 +7,15 @@ if __name__ == '__main__':
 
     parser.add_option("-p", "--path",type="string", help="DB Path")
     parser.add_option("-l", "--limit",type="string", help="Limit")
-    parser.add_option("-o", "--offset",type="string", help="Offset")
+    parser.add_option("-o", "--offset",type="string", help="Offset", default="0")
     parser.add_option("-f", "--format", type="string", help="If On, split files into hanchans", default="")
     parser.add_option("-n", "--fname", type="string", help="Name of the Output File")
 
     opts,_ = parser.parse_args() 
 
 
-    loaded_logs = load_logs_from_db(opts.path, limit=opts.limit, offset=opts.offset)  # Not sure how LIMIT and OFFSET works here? Dates?
+    lim = opts.limit if opts.limit else get_total_logs_count(opts.path)
+    loaded_logs = load_logs_from_db(opts.path, lim, offset=opts.offset)  # Not sure how LIMIT and OFFSET works here? Dates?
     
     print("This DB has %d games in total" % get_total_logs_count(opts.path))
     
