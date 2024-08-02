@@ -7,14 +7,15 @@ help()
 year=2024
 decompress=false
 current_year=2024
+week=true
 
-while getopts "cwdy:" opt;
+while getopts "csdy:" opt;
 do
     case $opt in
         c)
             ;;
-        w)
-            week=true
+        s)
+            week=false
             ;;   
         d)
             decompress=true
@@ -31,7 +32,12 @@ done
 
 if [ "$year" -eq "$current_year" ]
 then
-    python3 main.py -a id -p ./db/$year.db
+    if [ "$week" == true ]
+    then
+        python3 main.py -a id -p ./db/$year.db
+    else
+        python3 main.py -a id -p ./db/$year.db -s
+    fi
     python3 main.py -a content -p ./db/$year.db
 else
     mkdir temp
@@ -40,7 +46,7 @@ else
     python3 main.py -a content -p ./db/$year.db
 fi
 
-if $decompress
+if [ "$decompress" == true ]
 then
     python3 getlog.py -p ./db/$year.db
 fi
