@@ -6,18 +6,19 @@ help()
 
 year=2024
 decompress=false
+current_year=2024
 
 while getopts "cwdy:" opt;
 do
     case $opt in
         c)
-            current_year=true
             ;;
         w)
             week=true
             ;;   
         d)
             decompress=true
+            ;;
         y)
             year=$OPTARG
             ;;
@@ -28,7 +29,7 @@ do
     esac
 done
 
-if $year -eq 2024
+if [ "$year" -eq "$current_year" ]
 then
     python3 main.py -a id -p ./db/$year.db
     python3 main.py -a content -p ./db/$year.db
