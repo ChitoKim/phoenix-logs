@@ -4,9 +4,9 @@ help()
     echo "Automatic Paifu Crawling Shell Script"
 }
 
-year=2024
+year=$( date +"%Y" )
 decompress=false
-current_year=2024
+current_year=$( date +"%Y" )
 week=true
 
 while getopts "csdy:" opt;
