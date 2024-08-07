@@ -88,7 +88,7 @@ class DownloadLogContent(object):
         """
         Download log content and store compressed version in the db
         """
-        url = f"https://tenhou.net/5/mjlog2json.cgi?{log_id}"
+        url = f"https://tenhou.net/0/log/?{log_id}"
 
         binary_content = None
         was_error = False
@@ -101,9 +101,9 @@ class DownloadLogContent(object):
             )
             binary_content = response.content
             # it can be an error page
-            #if "mjlog" not in response.text:
-            #    print("There is no log content in response")
-            #    was_error = True
+            if "mjlog" not in response.text:
+                print("There is no log content in response")
+                was_error = True
         except Exception as e:
             print(e)
             was_error = True

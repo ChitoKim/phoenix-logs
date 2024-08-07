@@ -91,26 +91,12 @@ It contains example of parsing log content on separate tags as well.
 
 `python main.py -a content -p db/2024.db -l 100000 -t 1`
 
-# Output json(tenhou.net/6) game logs into text files
+# Output raw mjlog(xml) game logs into text files
 
-`python getlog.py -p {DB Path} -l {Limit} -o {Offset} -f {Format} -n {Output File Name}`
+`python getxml.py -p {DB Path} -l {Limit} -o {Offset} -f {Format} -n {Output File Name}`
 
 for example, if you have 2024.db in db folder
 
-`python getlog.py -p db/2024.db -l 100 -o 0`
+`python getxml.py -p db/2024.db -l 100 -o 0`
 
-Then it outputs a single file containing 100 games, as db/2024.json
-If you include "-f 1", games are written in seperated files.
-
-# A shell script to automatically download all IDs and game contents of a year
-
-`sh routine.sh -y {Year} -s -d`
-If you include "-s" for current year, it downloads game ids from Jan 1. 
-If you include "-d", the decompressed longs are written into a single text file.
-
-For example, if you want to download all games of 2022 and decompress,
-
-`sh routine.sh -y 2022 -d`
-
-The shell script is only for common Unix shells like bash, and zsh. 
-A Powershell script upcoming.
+Then it outputs a single file containing 100 games, as db/2024.xml
