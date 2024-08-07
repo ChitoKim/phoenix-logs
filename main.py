@@ -5,6 +5,7 @@ from optparse import OptionParser
 
 from download_game_ids import DownloadGameId
 from download_logs_content import DownloadLogContent
+from db import get_total_logs_count
 
 current_directory = os.path.dirname(os.path.realpath(__file__))
 logs_directory = os.path.join(current_directory, "temp")
@@ -24,18 +25,18 @@ def set_up_folders():
 def parse_command_line_arguments():
     parser = OptionParser()
 
-    parser.add_option("-y", "--year", type="string", default=None, help="Target year to download logs")
-    parser.add_option("-p", "--db_path", type="string")
+    parser.add_option("-y", "--year", type="string", default=current_year, help="Target year to download logs")
+    parser.add_option("-p", "--db_path", type="string", default="db/"+ current_year + ".db")
     parser.add_option("-a", "--action", type="string", default="id", help="id or content")
     parser.add_option("-l", "--limit", type="int", default=0, help="To download content script")
-    parser.add_option("-t", "--threads", type="int", default=3, help="Count of threads")
+    parser.add_option("-t", "--threads", type="int", default=1, help="Count of threads")
     parser.add_option(
         "-f", "--from_archive", action="store_true", dest="from_archive", help="Extract logs from archive"
     )
     parser.add_option(
         "-s", action="store_true", dest="start", help="Download log ids from the start of the year"
     )
-    parser.add_option("--strip", action="store_true", default=False, help="Strip some tags from logs")
+    parser.add_option("--strip", action="store_true", default=False, help="Strip some tags from logs") #trivial in json format
 
     opts, _ = parser.parse_args()
     return opts
@@ -54,7 +55,8 @@ def main():
     if opts.action == "id":
         DownloadGameId(logs_directory, db_file, opts.year, opts.start, opts.from_archive).process()
     elif opts.action == "content":
-        DownloadLogContent(db_file, opts.limit, opts.threads, opts.strip).process()
+        limit = opts.limit if opts.limit else get_total_logs_count(opts.db_path)
+        DownloadLogContent(db_file, limit, opts.threads, opts.strip).process()
     else:
         print("Unknown action")
 
